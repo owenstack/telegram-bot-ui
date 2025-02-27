@@ -23,27 +23,25 @@ export default function LogIn() {
 
 	const submit = () => {
 		startTransition(() => {
-			async () => {
-				try {
-					await signIn.email(
-						{ email, password },
-						{
-							onError: (ctx) => {
-								toast.error(ctx.error.message);
-							},
-							onSuccess: () => {
-								toast.success("Signed in successfully");
-								navigate("/dashboard");
-							},
+			signIn
+				.email(
+					{ email, password },
+					{
+						onError: (ctx) => {
+							toast.error(ctx.error.message);
 						},
-					);
-				} catch (error) {
+						onSuccess: () => {
+							toast.success("Signed in successfully");
+							navigate("/dashboard");
+						},
+					},
+				)
+				.catch((error) => {
 					toast.error("Something went wrong", {
 						description:
 							error instanceof Error ? error.message : "Internal server error",
 					});
-				}
-			};
+				});
 		});
 	};
 	return (
@@ -59,7 +57,13 @@ export default function LogIn() {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<Form onSubmit={submit} className="flex flex-col gap-6">
+							<Form
+								onSubmit={(e) => {
+									e.preventDefault();
+									submit();
+								}}
+								className="flex flex-col gap-6"
+							>
 								<div className="grid gap-3">
 									<Label htmlFor="email">Email</Label>
 									<Input

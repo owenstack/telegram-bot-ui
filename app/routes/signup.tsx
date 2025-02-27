@@ -17,27 +17,25 @@ export default function SignUp() {
 
 	const submit = () => {
 		startTransition(() => {
-			async () => {
-				try {
-					await signUp.email(
-						{ name, email, password },
-						{
-							onError: (ctx) => {
-								toast.error(ctx.error.message);
-							},
-							onSuccess: () => {
-								toast.success("Signed up successfully");
-								navigate("/dashboard");
-							},
+			signUp
+				.email(
+					{ name, email, password },
+					{
+						onError: (ctx) => {
+							toast.error(ctx.error.message);
 						},
-					);
-				} catch (error) {
+						onSuccess: () => {
+							toast.success("Signed up successfully");
+							navigate("/dashboard");
+						},
+					},
+				)
+				.catch((error) => {
 					toast.error("Something went wrong", {
 						description:
 							error instanceof Error ? error.message : "Internal server error",
 					});
-				}
-			};
+				});
 		});
 	};
 	return (
@@ -55,7 +53,13 @@ export default function SignUp() {
 									Enter your details below to create a new account
 								</p>
 							</div>
-							<Form onSubmit={submit} className="grid gap-4">
+							<Form
+								onSubmit={(e) => {
+									e.preventDefault();
+									submit();
+								}}
+								className="grid gap-4"
+							>
 								<div className="grid gap-2">
 									<Label htmlFor="name">Full name</Label>
 									<Input
