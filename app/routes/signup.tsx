@@ -3,7 +3,6 @@ import { Form, Link, useNavigate } from "@remix-run/react";
 import { Input } from "~/components/ui/input";
 import { Logo } from "~/components/logo";
 import { Button } from "~/components/ui/button";
-import { GoogleSignIn } from "~/components/auth/google";
 import { signUp } from "~/utils/auth.client";
 import { useState, useTransition } from "react";
 import { Loader } from "lucide-react";
@@ -94,12 +93,6 @@ export default function SignUp() {
 									{pending ? <Loader className="animate-spin" /> : "Sign up"}
 								</Button>
 							</Form>
-							<div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-								<span className="bg-background text-muted-foreground relative z-10 px-2">
-									Or continue with
-								</span>
-							</div>
-							<GoogleSignIn />
 							<div className="text-center text-sm">
 								Already have an account?{" "}
 								<Link to="/login" className="underline underline-offset-4">

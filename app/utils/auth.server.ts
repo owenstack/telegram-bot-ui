@@ -9,11 +9,8 @@ export const auth = (env: Env) => {
 			provider: "sqlite",
 			schema,
 		}),
-		socialProviders: {
-			google: {
-				clientId: env.GOOGLE_CLIENT_ID,
-				clientSecret: env.GOOGLE_CLIENT_SECRET,
-			},
+		emailAndPassword: {
+			enabled: true,
 		},
 	});
 };

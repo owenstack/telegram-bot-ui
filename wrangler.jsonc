@@ -14,8 +14,8 @@
 	"d1_databases": [
 		{
 			"binding": "DATABASE",
-			"database_name": "cloudflare-saas-stack-db",
-			"database_id": "294b2613-5f3c-40e5-b32b-bbe664bd9696"
+			"database_name": "start-db",
+			"database_id": "fa5c8276-511b-4e83-b9c6-43edaee5a092"
 		}
 	]
 }

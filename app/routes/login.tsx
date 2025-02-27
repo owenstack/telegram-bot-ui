@@ -13,7 +13,6 @@ import { useTransition, useState } from "react";
 import { toast } from "sonner";
 import { signIn } from "~/utils/auth.client";
 import { Loader } from "lucide-react";
-import { GoogleSignIn } from "~/components/auth/google";
 import { Logo } from "~/components/logo";
 
 export default function LogIn() {
@@ -95,7 +94,6 @@ export default function LogIn() {
 									{pending ? <Loader className="animate-spin" /> : "Sign in"}
 								</Button>
 							</Form>
-							<GoogleSignIn />
 							<div className="mt-4 text-center text-sm">
 								Don&apos;t have an account?{" "}
 								<Link to="/signup" className="underline underline-offset-4">

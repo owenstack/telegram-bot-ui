@@ -1,4 +1,7 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import type {
+	ActionFunctionArgs,
+	LoaderFunctionArgs,
+} from "@remix-run/cloudflare";
 import { auth } from "~/utils/auth.server";
 
 export async function loader({ request, context }: LoaderFunctionArgs) {

@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { auth } from "~/utils/auth.server";
-import { createCloudflareContext, setupRemixHandler } from "~/utils/handlers";
+import { createCloudflareContext, setupRemixHandler } from "./handlers";
 import { trpcServer } from "@hono/trpc-server";
 import { appRouter } from "trpc/router";
 import { createContext } from "trpc/context";
