@@ -2,8 +2,6 @@
 
 @plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
 	--background: hsl(0 0% 100%);
 	--foreground: hsl(240 10% 3.9%);
@@ -32,8 +30,7 @@
 	--radius: 0.6rem;
 }
 
-.dark,
-:root[class~="dark"] {
+.dark {
 	--background: hsl(240 10% 3.9%);
 	--foreground: hsl(0 0% 98%);
 	--card: hsl(240 10% 3.9%);
