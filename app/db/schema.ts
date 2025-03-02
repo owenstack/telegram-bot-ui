@@ -1,61 +1,84 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
-  id: text("id").primaryKey(),
-  name: text("name").notNull(),
-  email: text("email").notNull().unique(),
-  emailVerified: integer("emailVerified", { mode: "boolean" }).notNull().default(false),
-  image: text("image"),
-  createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
-  updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
-  subscriptionId: text("subscriptionId"),
-  lastKeyGeneratedAt: integer("lastKeyGeneratedAt", { mode: "timestamp" }),
-  });
+	id: text("id").primaryKey(),
+	name: text("name").notNull(),
+	email: text("email").notNull().unique(),
+	emailVerified: integer("emailVerified", { mode: "boolean" })
+		.notNull()
+		.default(false),
+	image: text("image"),
+	createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
+	updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
+	subscriptionId: text("subscriptionId"),
+	lastKeyGeneratedAt: integer("lastKeyGeneratedAt", { mode: "timestamp" }),
+});
 
 export const session = sqliteTable("session", {
-  id: text("id").primaryKey(),
-  userId: text("userId").notNull().references(() => user.id),
-  token: text("token").notNull(),
-  expiresAt: integer("expiresAt", { mode: "timestamp" }).notNull(),
-  ipAddress: text("ipAddress"),
-  userAgent: text("userAgent"),
-  createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
-  updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull()
+	id: text("id").primaryKey(),
+	userId: text("userId")
+		.notNull()
+		.references(() => user.id),
+	token: text("token").notNull(),
+	expiresAt: integer("expiresAt", { mode: "timestamp" }).notNull(),
+	ipAddress: text("ipAddress"),
+	userAgent: text("userAgent"),
+	createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
+	updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
 });
 
 export const account = sqliteTable("account", {
-  id: text("id").primaryKey(),
-  userId: text("userId").notNull().references(() => user.id),
-  accountId: text("accountId").notNull(),
-  providerId: text("providerId").notNull(),
-  accessToken: text("accessToken"),
-  refreshToken: text("refreshToken"),
-  accessTokenExpiresAt: integer("accessTokenExpiresAt", { mode: "timestamp" }),
-  refreshTokenExpiresAt: integer("refreshTokenExpiresAt", { mode: "timestamp" }),
-  scope: text("scope"),
-  idToken: text("idToken"),
-  password: text("password"),
-  createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
-  updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull()
+	id: text("id").primaryKey(),
+	userId: text("userId")
+		.notNull()
+		.references(() => user.id),
+	accountId: text("accountId").notNull(),
+	providerId: text("providerId").notNull(),
+	accessToken: text("accessToken"),
+	refreshToken: text("refreshToken"),
+	accessTokenExpiresAt: integer("accessTokenExpiresAt", { mode: "timestamp" }),
+	refreshTokenExpiresAt: integer("refreshTokenExpiresAt", {
+		mode: "timestamp",
+	}),
+	scope: text("scope"),
+	idToken: text("idToken"),
+	password: text("password"),
+	createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
+	updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
 });
 
 export const verification = sqliteTable("verification", {
-  id: text("id").primaryKey(),
-  identifier: text("identifier").notNull(),
-  value: text("value").notNull(),
-  expiresAt: integer("expiresAt", { mode: "timestamp" }).notNull(),
-  createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
-  updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull()
+	id: text("id").primaryKey(),
+	identifier: text("identifier").notNull(),
+	value: text("value").notNull(),
+	expiresAt: integer("expiresAt", { mode: "timestamp" }).notNull(),
+	createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
+	updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
 });
 
 export const rateLimit = sqliteTable("rateLimit", {
-  id: text("id").primaryKey(),
-  userId: text("userId").notNull().references(() => user.id),
-  endpoint: text("endpoint").notNull(),
-  count: integer("count").notNull().default(0),
-  resetAt: integer("resetAt", { mode: "timestamp" }).notNull(),
-  createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
-  updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull()
+	id: text("id").primaryKey(),
+	userId: text("userId")
+		.notNull()
+		.references(() => user.id),
+	endpoint: text("endpoint").notNull(),
+	count: integer("count").notNull().default(0),
+	resetAt: integer("resetAt", { mode: "timestamp" }).notNull(),
+	createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
+	updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
+});
+
+export const telegramMember = sqliteTable("telegram_member", {
+	id: integer("id").primaryKey(), // Telegram user ID
+	firstName: text("first_name").notNull(),
+	lastName: text("last_name"),
+	username: text("username"),
+	isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+	lastActive: integer("last_active", { mode: "timestamp" }).notNull(),
+	joinedAt: integer("joined_at", { mode: "timestamp" }).notNull(),
+	leftAt: integer("left_at", { mode: "timestamp" }),
+	createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+	updatedAt: integer("updated_at", { mode: "timestamp" }).notNull(),
 });
 
 export type User = typeof user.$inferSelect;
@@ -63,3 +86,4 @@ export type Session = typeof session.$inferSelect;
 export type Account = typeof account.$inferSelect;
 export type Verification = typeof verification.$inferSelect;
 export type RateLimit = typeof rateLimit.$inferSelect;
+export type TelegramMember = typeof telegramMember.$inferSelect;

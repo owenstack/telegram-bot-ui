@@ -11,8 +11,7 @@ type GetLoadContextArgs = {
 };
 
 declare module "@remix-run/cloudflare" {
-	interface AppLoadContext extends ReturnType<typeof getLoadContext> {
-	}
+	interface AppLoadContext extends ReturnType<typeof getLoadContext> {}
 }
 
 export function getLoadContext({ context }: GetLoadContextArgs) {
@@ -20,7 +19,7 @@ export function getLoadContext({ context }: GetLoadContextArgs) {
 }
 
 declare global {
-  namespace NodeJS {
-      interface ProcessEnv extends Env {}
-  }
+	namespace NodeJS {
+		interface ProcessEnv extends Env {}
+	}
 }

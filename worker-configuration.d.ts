@@ -7,5 +7,6 @@ interface Env {
 	SMTP_SERVER_HOST: string;
 	SMTP_SERVER_USER: string;
 	EMAIL_FROM: string;
+	SUPER_GROUP_CHAT_ID: string;
 	DATABASE: D1Database;
 }

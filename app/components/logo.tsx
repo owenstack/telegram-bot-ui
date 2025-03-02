@@ -1,7 +1,7 @@
-import { cn } from "~/lib/utils";
 import { Link } from "@remix-run/react";
-import { buttonVariants } from "./ui/button";
 import { TextCursorInput } from "lucide-react";
+import { cn } from "~/lib/utils";
+import { buttonVariants } from "./ui/button";
 
 export function Logo({ className }: { className?: string }) {
 	return (

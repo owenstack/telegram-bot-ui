@@ -1,9 +1,10 @@
-import { Hono } from "hono";
-import { auth } from "~/utils/auth.server";
-import { createCloudflareContext, setupRemixHandler } from "./handlers";
 import { trpcServer } from "@hono/trpc-server";
-import { appRouter } from "trpc/router";
+import { Hono } from "hono";
 import { createContext } from "trpc/context";
+import { appRouter } from "trpc/router";
+import { auth } from "~/utils/auth.server";
+import { createBotHandler } from "../telegram/handler";
+import { createCloudflareContext, setupRemixHandler } from "./handlers";
 
 const app = new Hono<{ Bindings: Env }>();
 
@@ -17,6 +18,11 @@ app.use(
 		router: appRouter,
 	}),
 );
+
+app.use("/api/bot", async (c) => {
+	const botHandler = createBotHandler(c.env);
+	return botHandler(c);
+});
 
 app.all("*", async (c) => {
 	try {

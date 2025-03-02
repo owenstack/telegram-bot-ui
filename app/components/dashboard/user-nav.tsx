@@ -1,19 +1,19 @@
+import { Link } from "@remix-run/react";
+import { Loader } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { cn } from "~/lib/utils";
+import { signOut } from "~/utils/auth.client";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { buttonVariants } from "../ui/button";
 import {
 	DropdownMenu,
+	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-	DropdownMenuContent,
 } from "../ui/dropdown-menu";
-import { Link } from "@remix-run/react";
-import { buttonVariants } from "../ui/button";
-import { cn } from "~/lib/utils";
-import { toast } from "sonner";
-import { signOut } from "~/utils/auth.client";
-import { useState } from "react";
-import { Loader } from "lucide-react";
 
 export function UserNav({
 	name,

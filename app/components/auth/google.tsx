@@ -1,9 +1,9 @@
-import { Button } from "../ui/button";
-import { signIn } from "~/utils/auth.client";
-import { useState } from "react";
 import Google from "assets/icons/google";
-import { toast } from "sonner";
 import { Loader } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { signIn } from "~/utils/auth.client";
+import { Button } from "../ui/button";
 
 export function GoogleSignIn() {
 	const [loading, setLoading] = useState(false);

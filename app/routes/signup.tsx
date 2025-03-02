@@ -1,12 +1,12 @@
 import { Label } from "@radix-ui/react-label";
 import { Form, Link, useNavigate } from "@remix-run/react";
-import { Input } from "~/components/ui/input";
+import { Loader } from "lucide-react";
+import { useState, useTransition } from "react";
+import { toast } from "sonner";
 import { Logo } from "~/components/logo";
 import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import { signUp } from "~/utils/auth.client";
-import { useState, useTransition } from "react";
-import { Loader } from "lucide-react";
-import { toast } from "sonner";
 
 export default function SignUp() {
 	const [pending, startTransition] = useTransition();

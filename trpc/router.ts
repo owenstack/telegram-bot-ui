@@ -1,10 +1,10 @@
 import { initTRPC } from "@trpc/server";
-import { z } from "zod";
-import type { Context } from "./context";
-import { drizzle } from "drizzle-orm/d1";
-import { user } from "~/db/schema";
 import { sql } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/d1";
+import { z } from "zod";
+import { user } from "~/db/schema";
 import { auth } from "~/utils/auth.server";
+import type { Context } from "./context";
 
 export const t = initTRPC.context<Context>().create();
 export const appRouter = t.router({

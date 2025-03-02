@@ -1,3 +1,8 @@
+import { Form, Link, useNavigate } from "@remix-run/react";
+import { Loader } from "lucide-react";
+import { useState, useTransition } from "react";
+import { toast } from "sonner";
+import { Logo } from "~/components/logo";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -8,12 +13,7 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { Link, Form, useNavigate } from "@remix-run/react";
-import { useTransition, useState } from "react";
-import { toast } from "sonner";
 import { signIn } from "~/utils/auth.client";
-import { Loader } from "lucide-react";
-import { Logo } from "~/components/logo";
 
 export default function LogIn() {
 	const [pending, startTransition] = useTransition();

@@ -1,6 +1,6 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "remix-starter-template",
+	"name": "kc-messages",
 	"compatibility_date": "2024-11-01",
 	"main": "./server/server.ts",
 	"compatibility_flags": ["nodejs_compat"],
@@ -17,5 +17,8 @@
 			"database_name": "start-db",
 			"database_id": "fa5c8276-511b-4e83-b9c6-43edaee5a092"
 		}
-	]
+	],
+	"triggers": {
+		"crons": ["0 17 * * sun"]
+	}
 }
